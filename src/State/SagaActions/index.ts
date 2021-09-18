@@ -44,6 +44,7 @@ function* getLoginStatus({ email, password }: login) {
         yield put(data);
     }
   } catch (err: any) {
+    // console.log("err.response.status", err.response.status);
     if (err.response.status === 401) {
       const error: gotLoginStatus = {
         type: "GOT_LOGIN_STATUS",
@@ -71,7 +72,7 @@ function* fetchDevices() {
       };
       yield put(res);
     }
-    yield delay(5000);
+    yield delay(5000); //this will call api every 5 seconds
   }
 }
 

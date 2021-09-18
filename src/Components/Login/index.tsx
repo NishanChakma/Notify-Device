@@ -14,13 +14,13 @@ import { State } from "../../State/Reducers/MyReducers";
 
 const Login: React.FC<IPage> = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 1224px)" }); //for mobile screen
-  const dispatch = useDispatch();
-  const { logIn, getDevices } = bindActionCreators(actionCreators, dispatch);
+  const dispatch = useDispatch(); //dispatch action
+  const { logIn, getDevices } = bindActionCreators(actionCreators, dispatch); //login and get devices action
   const history = useHistory(); //for routing
   const store: State = useSelector((state: RootrootReducer) => state.home);
 
   useEffect(() => {
-    console.log(store);
+    //if user login go to home page
     if (store.loginStaus) {
       getDevices();
       history.push("/home"); //router is another option for this.

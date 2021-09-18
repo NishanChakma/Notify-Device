@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../../State";
@@ -41,8 +41,21 @@ const NotifyDevices: React.FC<{}> = () => {
       notifyDevices(data);
       getDevices();
       resetForm();
+      //if success go to home after submission
+      setTimeout(function () {
+        if (store.success) {
+          history.push("/home");
+        }
+      }, 3000);
     },
   });
+
+  useEffect(() => {
+    //if user not login block home page
+    if (!store.loginStaus) {
+      history.push("/"); //router is another option for this.
+    }
+  }, [history, store]);
 
   const cancelButton = useCallback(() => {
     history.push("/home");

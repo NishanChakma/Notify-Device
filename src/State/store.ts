@@ -5,13 +5,14 @@ import reducers from "./Reducers/RootReducer";
 import SagaActions from "./SagaActions";
 import { persistStore, persistReducer, createTransform } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { State } from "./Reducers/MyReducers";
 
 const sagaMiddleWare = createSagaMiddleware();
 
 const passengerBlacklist = createTransform(
   null,
-  (state, key) => {
-    const newState: any = state;
+  (state: State) => {
+    const newState = state;
     newState.error = "";
     newState.successMessage = "";
     return newState;

@@ -81,6 +81,7 @@ const HomeReducer = (state: State = initialState, action: actions) => {
         loading: false,
         devices: action.devices,
         error: action.devicesError,
+        successMessage: "",
       };
     case "GOT_NOTIFY_DEVICES":
       return {

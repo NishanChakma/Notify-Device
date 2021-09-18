@@ -8,27 +8,27 @@ import { useHistory } from "react-router-dom";
 import { State } from "../../State/Reducers/MyReducers";
 
 export interface bubbleInterface {
-  x: number;
-  y: number;
-  s: number;
+  x: number; //x-origin
+  y: number; //y-origin
+  s: number; //bubble-size
 }
 
 const Home: React.FC<{}> = () => {
-  const history = useHistory();
-  const dispatch = useDispatch();
+  const history = useHistory(); //for routing
+  const dispatch = useDispatch(); //dispatch action
   const { logOut } = bindActionCreators(actionCreators, dispatch);
-  const store: State = useSelector((state: RootrootReducer) => state.home);
+  const store: State = useSelector((state: RootrootReducer) => state.home); //store
 
-  const bigMonitor = useMediaQuery({ minWidth: 1824 });
-  const mediumMonitor = useMediaQuery({ minWidth: 1224, maxWidth: 1823 });
-  const [bubbleArray, setbubbleArray] = useState<bubbleInterface[]>([]);
+  const bigMonitor = useMediaQuery({ minWidth: 1824 }); //for big screen
+  const mediumMonitor = useMediaQuery({ minWidth: 1224, maxWidth: 1823 }); //for medium screen
+  const [bubbleArray, setbubbleArray] = useState<bubbleInterface[]>([]); //bubble array
 
   function getRandomBetween(min: number, max: number) {
-    return Math.random() * (max - min) + min;
+    return Math.random() * (max - min) + min; //generate a random number
   }
 
   useEffect(() => {
-    console.log(store);
+    //if user not login block home page
     if (!store.loginStaus) {
       history.push("/"); //router is another option for this.
     }
@@ -69,7 +69,7 @@ const Home: React.FC<{}> = () => {
   }, [store, bigMonitor, mediumMonitor]);
 
   const handleNotify = useCallback(() => {
-    history.push("/notify");
+    history.push("/notify"); //go to notify page
   }, [history]);
 
   const logOutButtonClick = () => {
