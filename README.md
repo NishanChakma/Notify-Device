@@ -11,3 +11,4 @@
 7. If password is incorrect, error message is shown
 8. On the devices screen, the circles orbit around the number
 9. On the devices screen, the number of circles shown should equal the number of active devices
+10. After submit notify successfully, it will redirect homepage after 3 seconds later.
