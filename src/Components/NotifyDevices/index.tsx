@@ -133,7 +133,7 @@ const NotifyDevices: React.FC<{}> = () => {
               <button
                 onClick={cancelButton}
                 className="login-form-button"
-                type="button"
+                type="button" //type must be button, otherwise form will not reset
               >
                 cancel
               </button>
