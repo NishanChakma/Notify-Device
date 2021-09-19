@@ -9,7 +9,7 @@ import { State } from "./Reducers/MyReducers";
 
 const sagaMiddleWare = createSagaMiddleware();
 
-const passengerBlacklist = createTransform(
+const homeBlacklist = createTransform(
   null,
   (state: State) => {
     const newState = state;
@@ -23,7 +23,7 @@ const passengerBlacklist = createTransform(
 const persistConfig = {
   key: "root",
   storage: storage,
-  transforms: [passengerBlacklist],
+  transforms: [homeBlacklist],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
