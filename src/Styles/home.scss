@@ -60,6 +60,12 @@
   position: absolute;
   transition: opacity ease-in-out 1s;
   width: 152px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    color: #263238;
+  }
 }
 
 .bubbles {

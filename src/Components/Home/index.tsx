@@ -8,8 +8,10 @@ import { useHistory } from "react-router-dom";
 import { State } from "../../State/Reducers/MyReducers";
 
 export interface bubbleInterface {
-  x: number; //x-origin
-  y: number; //y-origin
+  id: number; //from api
+  name: string; //from api
+  x: number; //x-origin bubble position
+  y: number; //y-origin bubble position
   s: number; //bubble-size
 }
 
@@ -64,8 +66,10 @@ const Home: React.FC<{}> = () => {
         : forMobileScreen;
       totalBubble.push(selectbubbleSize);
     }
-
-    setbubbleArray(totalBubble);
+    let finalArray = totalBubble.map((item, i) =>
+      Object.assign({}, item, store.devices[i])
+    );
+    setbubbleArray(finalArray);
   }, [store, bigMonitor, mediumMonitor]);
 
   const handleNotify = useCallback(() => {
@@ -91,7 +95,9 @@ const Home: React.FC<{}> = () => {
                       backgroundColor: "#fff",
                       transform: `translate(${bubble.x}px, ${bubble.y}px) scale(${bubble.s})`,
                     }}
-                  />
+                  >
+                    <h3>{bubble.name}</h3>
+                  </div>
                 );
               })}
           </div>
