@@ -41,18 +41,21 @@ const NotifyDevices: React.FC<{}> = () => {
       notifyDevices(data);
       getDevices();
       resetForm();
-      //if success go to home after submission
-      console.log(store.success);
-      setTimeout(function () {
-        if (store.success) {
-          history.push("/home");
-        }
-      }, 3000);
     },
   });
 
+  //if message sent successfully go to home after submission
   useEffect(() => {
-    //if user not login block home page
+    if (store.success) {
+      var timerFunc = setTimeout(() => {
+        history.push("/home");
+      }, 3000);
+    }
+    return () => clearTimeout(timerFunc);
+  }, [store.success, history]);
+
+  //if user not login block home page.
+  useEffect(() => {
     if (!store.loginStaus) {
       history.push("/"); //router is another option for this.
     }
@@ -118,10 +121,15 @@ const NotifyDevices: React.FC<{}> = () => {
               required
             />
           </div>
+
+          {/* if error */}
           {store.error && <h6 className="login-error">{store.error}</h6>}
+
+          {/* if success */}
           {store.successMessage && (
             <h6 className="login-error">{store.successMessage}</h6>
           )}
+
           <div
             style={{ display: "flex", flexDirection: "row", marginLeft: "5px" }}
           >

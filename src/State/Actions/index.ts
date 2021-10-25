@@ -3,6 +3,7 @@ import {
   logOutAction,
   getDevicesAction,
   notifyDevicesAction,
+  getResetNotifyAction,
 } from "../Types/ActionCreatorTypes";
 import { notifyArray } from "../Types/ActionType";
 
@@ -23,6 +24,12 @@ export const logOut: logOutAction = () => {
 export const getDevices: getDevicesAction = () => {
   return {
     type: "GET_DEVICES",
+  };
+};
+
+export const resetNotify: getResetNotifyAction = () => {
+  return {
+    type: "RESET_NOTIFY",
   };
 };
 

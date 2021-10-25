@@ -6,6 +6,7 @@ import {
   getDevices,
   gotDevices,
   gotNotify,
+  notifyReset,
 } from "../Types/ActionType";
 
 type actions =
@@ -14,7 +15,8 @@ type actions =
   | logOut
   | getDevices
   | gotDevices
-  | gotNotify;
+  | gotNotify
+  | notifyReset;
 
 export interface State {
   loginStaus: boolean;
@@ -74,6 +76,11 @@ const HomeReducer = (state: State = initialState, action: actions) => {
       return {
         ...state,
         loading: true,
+      };
+    case "RESET_NOTIFY":
+      return {
+        ...state,
+        success: false,
       };
     case "GOT_DEVICES":
       return {

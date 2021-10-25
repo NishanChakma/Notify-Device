@@ -22,6 +22,10 @@ export interface logOut {
   type: "LOG_OUT";
 }
 
+export interface notifyReset {
+  type: "RESET_NOTIFY";
+}
+
 export interface getDevices {
   type: "GET_DEVICES";
 }

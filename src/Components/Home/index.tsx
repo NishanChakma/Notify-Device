@@ -18,7 +18,7 @@ export interface bubbleInterface {
 const Home: React.FC<{}> = () => {
   const history = useHistory(); //for routing
   const dispatch = useDispatch(); //dispatch action
-  const { logOut } = bindActionCreators(actionCreators, dispatch);
+  const { logOut, resetNotify } = bindActionCreators(actionCreators, dispatch);
   const store: State = useSelector((state: RootrootReducer) => state.home); //store
 
   const bigMonitor = useMediaQuery({ minWidth: 1824 }); //for big screen
@@ -73,8 +73,9 @@ const Home: React.FC<{}> = () => {
   }, [store, bigMonitor, mediumMonitor]);
 
   const handleNotify = useCallback(() => {
+    resetNotify();
     history.push("/notify"); //go to notify page
-  }, [history]);
+  }, [history, resetNotify]);
 
   const logOutButtonClick = () => {
     logOut();
