@@ -42,6 +42,7 @@ const NotifyDevices: React.FC<{}> = () => {
       getDevices();
       resetForm();
       //if success go to home after submission
+      console.log(store.success);
       setTimeout(function () {
         if (store.success) {
           history.push("/home");
